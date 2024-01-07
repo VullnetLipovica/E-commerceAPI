@@ -1,12 +1,35 @@
 ﻿using E_commerceAPI.Entities;
+using Microsoft.AspNetCore.Identity;
 using System.Xml.Linq;
 
 namespace E_commerceAPI.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(StoreContext context)
+        public static async Task Initialize(StoreContext context, UserManager<User> userManager)
         {
+
+            if(!userManager.Users.Any())
+            {
+                var user = new User
+                {
+                    UserName = "vullnet",
+                    Email = "vullnet@gmail.com"
+                };
+
+                await userManager.CreateAsync(user, "Lipovica123*");
+                await userManager.AddToRoleAsync(user, "Member");
+
+                var admin = new User
+                {
+                    UserName = "admin",
+                    Email = "admin@test.com"
+                };
+
+                await userManager.CreateAsync(user, "Admin@123");
+                await userManager.AddToRoleAsync(user, "Admin");
+            }
+
             if (context.Products.Any()) return;
 
             var products = new List<Product>
