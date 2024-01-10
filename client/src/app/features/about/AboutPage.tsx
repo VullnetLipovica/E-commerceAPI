@@ -1,38 +1,67 @@
-import { Alert, AlertTitle, Button, ButtonGroup, Container, List, ListItem, ListItemText, Typography } from '@mui/material';
-import { useState } from 'react';
-import agent from '../../api/agent';
+import React from 'react';
+import { Container, Typography, Grid, Paper, List, ListItem, ListItemText } from '@mui/material';
 
 export default function AboutPage() {
-    const [validationErrors, setValidationErrors] = useState<string[]>([]);
-
-    function getValidationError() {
-        agent.TestErrors.getValidationError()
-            .then(() => console.log('should not see this!'))
-            .catch(error => setValidationErrors(error));
-    }
-
     return (
-        <Container>
-            <Typography gutterBottom variant={'h2'}>Errors for testing purposes</Typography>
-            <ButtonGroup fullWidth>
-                <Button onClick={() => agent.TestErrors.get500Error().catch(error => console.log(error))} variant={'contained'}>Test 500 error</Button>
-                <Button onClick={() => agent.TestErrors.get404Error().catch(error => console.log(error))} variant={'contained'}>Test 404 error</Button>
-                <Button onClick={() => agent.TestErrors.get400Error().catch(error => console.log(error))} variant={'contained'}>Test 400 error</Button>
-                <Button onClick={getValidationError} variant={'contained'}>Test 400 validation
-                    error</Button>
-                <Button onClick={() => agent.TestErrors.get401Error().catch(error => console.log(error))} variant={'contained'}>Test 401 error</Button>
-            </ButtonGroup>
-            {validationErrors.length > 0 &&
-                <Alert severity="error">
-                    <AlertTitle>Validation Errors</AlertTitle>
-                    <List>
-                        {validationErrors.map(error => (
-                            <ListItem key={error}>
-                                <ListItemText>{error}</ListItemText>
+        <Container maxWidth="md" style={{ marginTop: '20px' }}>
+            <Typography variant="h2" gutterBottom>
+                About Us
+            </Typography>
+
+            <Grid container spacing={3}>
+                <Grid item xs={12}>
+                    <Paper elevation={3} style={{ padding: '20px' }}>
+                        <Typography variant="h4" gutterBottom>
+                            Our Story
+                        </Typography>
+                        <Typography paragraph>
+                            Welcome to Re-Store, where passion meets quality. Our story began with a group of individuals driven by a common goal  to redefine the online shopping experience.
+                        </Typography>
+                    </Paper>
+                </Grid>
+
+                <Grid item xs={12} md={6}>
+                    <Paper elevation={3} style={{ padding: '20px' }}>
+                        <Typography variant="h4" gutterBottom>
+                            Mission
+                        </Typography>
+                        <Typography paragraph>
+                            Our mission is to provide high-quality products and excellent service to our customers. We aim to create a seamless shopping experience for everyone.
+                        </Typography>
+                    </Paper>
+                </Grid>
+
+                <Grid item xs={12} md={6}>
+                    <Paper elevation={3} style={{ padding: '20px' }}>
+                        <Typography variant="h4" gutterBottom>
+                            Vision
+                        </Typography>
+                        <Typography paragraph>
+                            Our vision is to become a leading e-commerce platform, offering a diverse range of products and maintaining strong relationships with our customers.
+                        </Typography>
+                    </Paper>
+                </Grid>
+
+                <Grid item xs={12}>
+                    <Paper elevation={3} style={{ padding: '20px' }}>
+                        <Typography variant="h4" gutterBottom>
+                            Our Team
+                        </Typography>
+                        <List>
+                            <ListItem>
+                                <ListItemText primary="Vullnet Lipovica - CEO" secondary="" />
                             </ListItem>
-                        ))}
-                    </List>
-                </Alert>}
+                            <ListItem>
+                                <ListItemText primary="Erza Boshnjaku - Software Engineer" secondary="" />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText primary="Ardit Hoxha - CTO" secondary="" />
+                            </ListItem>
+                            {/* Add more team members as needed */}
+                        </List>
+                    </Paper>
+                </Grid>
+            </Grid>
         </Container>
-    )
+    );
 }
