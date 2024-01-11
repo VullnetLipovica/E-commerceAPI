@@ -57,7 +57,7 @@ export default function AboutPage() {
                             <ListItem>
                                 <ListItemText primary="Ardit Hoxha - CTO" secondary="" />
                             </ListItem>
-                            {/* Add more team members as needed */}
+                          
                         </List>
                     </Paper>
                 </Grid>

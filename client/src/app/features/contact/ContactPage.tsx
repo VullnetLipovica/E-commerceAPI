@@ -28,7 +28,7 @@ export default function ContactPage() {
                     <Button variant="contained" color="secondary" href="https://twitter.com" target="_blank">
                         Twitter
                     </Button>
-                    {/* Add more social media buttons as needed */}
+                   
                 </ButtonGroup>
             </Paper>
         </Grid>
