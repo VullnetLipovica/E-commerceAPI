@@ -60,6 +60,15 @@ export default function Header({ handleThemeChange, darkMode }: Props) {
                             {title.toUpperCase()}
                         </ListItem>
                     ))}
+                    {user &&
+                        <ListItem
+                            component={NavLink}
+                            to={'/inventory'}
+                            sx={navLinkStyles}
+                        >
+                            INVENTORY
+                        </ListItem>
+                    }
                 </List>
 
                 <Box display='flex' alignItems='center'>

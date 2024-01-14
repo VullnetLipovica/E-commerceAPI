@@ -34,7 +34,7 @@ export default function HomePage() {
                         <img src="../images/photo2.jpg" alt="Slide 1" style={{ maxWidth: "100%" }} />
                         <Typography variant="h5">1.</Typography>
                         <Typography variant="body1">
-                            Conquer the slopes in style and embrace the thrill of winter with our premium selection.
+                            Welcome to Re-Store, your one-stop destination for premium protein supplements designed to fuel your fitness journey and optimize your health.
                         </Typography>
                     </Paper>
                 </div>
@@ -44,7 +44,7 @@ export default function HomePage() {
                         <img src="../images/photo1.png" alt="Slide 2" style={{ maxWidth: "100%" }} />
                         <Typography variant="h5">2.</Typography>
                         <Typography variant="body1">
-                            Swiftly ship your favorite items to your doorstep.
+                            We take pride in offering a diverse range of high-quality products that cater to all your nutritional needs. Explore our selection and elevate your wellness with these exceptional protein supplements.
                         </Typography>
                     </Paper>
                 </div>
@@ -57,10 +57,10 @@ export default function HomePage() {
                     <Card>
                         <CardContent>
                             <Typography variant="h5" gutterBottom>
-                                Skiing Adventure!
+                                Pure Performance Proteins
                             </Typography>
                             <Typography variant="body1">
-                                The latest skiing feature is a game-changer! From advanced slope analytics to real-time weather updates, it's the perfect companion for any skiing enthusiast.
+                                Unleash your full potential with our selection of pure performance proteins. Whether you're an athlete, fitness enthusiast, or just starting your health journey, our protein supplements are crafted to support muscle growth, aid in recovery, and boost overall performance.
                             </Typography>
                         </CardContent>
                         <CardActions>
@@ -75,10 +75,10 @@ export default function HomePage() {
                     <Card>
                         <CardContent>
                             <Typography variant="h5" gutterBottom>
-                                Your Experience!
+                                Clean and Transparent Ingredients
                             </Typography>
                             <Typography variant="body1">
-                                Experience the thrill amplified. Our new skiing feature brings precision and excitement to every descent. Stay ahead, stay exhilarated.
+                                We prioritize your health by providing products with clean and transparent ingredient lists. Our commitment to quality ensures that you get the nutrients your body needs without unnecessary additives. Trust us to deliver supplements that contribute to your well-being without compromise.
                             </Typography>
                         </CardContent>
                         <CardActions>

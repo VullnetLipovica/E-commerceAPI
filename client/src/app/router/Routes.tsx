@@ -13,6 +13,7 @@ import Login from '../account/Login';
 import Register from '../account/Register';
 import RequireAuth from './RequireAuth';
 import Orders from '../features/orders/Orders';
+import Inventory from '../features/admin/Inventory';
 
 
 export const router = createBrowserRouter(([
@@ -21,11 +22,14 @@ export const router = createBrowserRouter(([
         element: <App />,
         children: [
             {
+                // authenticated routes
                 element: <RequireAuth />, children: [
                     { path: '/checkout', element: <CheckoutPage /> },
                     { path: '/orders', element: <Orders /> },
+                    { path: '/inventory', element: <Inventory /> },
                 ]
             },
+
             { path: '', element: <HomePage /> },
             { path: 'catalog', element: <Catalog /> },
             { path: 'catalog/:id', element: <ProductDetails /> },
