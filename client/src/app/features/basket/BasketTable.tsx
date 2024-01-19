@@ -6,12 +6,15 @@ import { Add, Delete, Remove } from "@mui/icons-material";
 import { BasketItem } from "../../models/basket";
 
 interface Props {
-    items: BasketItem[];
+    items: BasketItem[]; //tipet e te dhenave per artikujt e basketit
     isBasket?: boolean;
 }
 
+// Eksportojmë komponentin BasketTable
 export default function BasketTable({ items, isBasket = true }: Props) {
+    // Përdorim hook-un useAppSelector për të marrë gjendjen e koshit nga vargu i reduksit
     const { status } = useAppSelector(state => state.basket);
+    // Përdorim hook-un useAppDispatch për të marrë funksionin dispatch
     const dispatch = useAppDispatch();
 
     return (

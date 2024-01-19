@@ -14,37 +14,54 @@ import AppDropzone from '../../components/AppDropZone';
 import { setProduct } from '../catalog/catalogSlice';
 
 interface Props {
-    product?: Product;
-    cancelEdit: () => void;
+    product?: Product;            // Produkti që do të redaktohet (opsionale nëse po krijohet një produkt i ri)
+    cancelEdit: () => void;        // Funksioni për të anuluar procesin e editimit
 }
 
+// Komponenti "ProductForm" përdoret për të shfaqur dhe menaxhuar formën e një produkti
 export default function ProductForm({ product, cancelEdit }: Props) {
+    // Përdorimi i "useForm" nga "react-hook-form" për menaxhimin e formës
     const { control, reset, handleSubmit, watch, formState: { isDirty, isSubmitting } } = useForm({
-        mode: 'onTouched',
-        resolver: yupResolver<any>(validationSchema)
+        mode: 'onTouched', // Modifikatori për momentin e aktivizimit të validimeve
+        resolver: yupResolver<any>(validationSchema) // Përdorimi i Yup-schemas për validimin
     });
+
+    // Përdorimi i "useProducts" për të marrë listat e brands edhe types 
     const { brands, types } = useProducts();
+
+    // Përdorimi i "watch" për të vëzhguar vlerën e fajllit në formë
     const watchFile = watch('file', null);
+
+    // Përdorimi i "useAppDispatch" për të marrë funksionin dispatch të Redux
     const dispatch = useAppDispatch();
 
+    // Efekti për të filluar formën me vlerat e produktit nëse është në procesin e editimit
     useEffect(() => {
         if (product && !watchFile && !isDirty) reset(product);
         return () => {
+            // Revokimi i URL-së nëse ka një fajll i ngarkuar me pare
             if (watchFile) URL.revokeObjectURL(watchFile.preview);
         }
     }, [product, reset, watchFile, isDirty]);
 
+    // Funksioni për të paraqitur dhe menaxhuar dërgimin e të dhënave të formës
     async function handleSubmitData(data: FieldValues) {
         try {
             let response: Product;
+
+            // Nëse ka një produkt, thirre metoden update, në të kundërt, thirre metoden e create
             if (product) {
                 response = await agent.Admin.updateProduct(data);
             } else {
                 response = await agent.Admin.createProduct(data);
             }
+
             dispatch(setProduct(response));
+
+            // Thirrja e funksionit për të anuluar procesin e editimit
             cancelEdit();
         } catch (error) {
+            // Kapja dhe shfaqja e ndonjë gabimi në konsolë nëse ka probleme me dërgimin e të dhënave
             console.log(error);
         }
     }

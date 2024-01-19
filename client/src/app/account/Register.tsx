@@ -7,11 +7,14 @@ import { LockOutlined } from '@mui/icons-material';
 import { toast } from 'react-toastify';
 
 export default function Register() {
+    // Përdorimi i hooks për të naviguar midis faqeve
     const navigate = useNavigate();
-    const { register, handleSubmit, setError, formState: { isSubmitting, errors, isValid } } = useForm({
+    // Përdorimi i hooks nga React Hook Form për menaxhimin e formës
+    const { register, handleSubmit, setError, formState: { isSubmitting, errors, isValid } } = useForm({ //regjistron fushat e formës,perpunon formen,dhe vendos errorat
         mode: 'onTouched'
     });
 
+    // Funksion për trajtimin e gabimeve nga API
     function handleApiErrors(errors: any) {
         console.log(errors);
         if (errors) {

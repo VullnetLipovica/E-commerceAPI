@@ -4,11 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace E_commerceAPI.Extensions;
 
+// Klasa e OrderExtensions përmban metodën për projektimin e entiteteve Order në DTO (Data Transfer Object)
 public static class OrderExtensions
 {
+    // Metoda ProjectOrderToOrderDto kthen një IQueryable të Order të projektuar në OrderDto
     public static IQueryable<OrderDto> ProjectOrderToOrderDto(this IQueryable<Order> query)
     {
         return query
+            // Përzgjedh entitetet e Order dhe i mapon në OrderDto
             .Select(order => new OrderDto
             {
                 Id = order.Id,
@@ -27,6 +30,8 @@ public static class OrderExtensions
                     Price = item.Price,
                     Quantity = item.Quantity
                 }).ToList()
-            }).AsNoTracking();
+            })
+            // Përdor AsNoTracking për të shmangur ndjekjen e ndryshimeve nga Entity Framework
+            .AsNoTracking();
     }
 }

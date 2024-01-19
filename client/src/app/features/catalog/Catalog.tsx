@@ -11,19 +11,26 @@ import ProductSearch from './ProductSearch';
 import useProducts from '../../hooks/useProducts';
 
 
+// Një listë e mundësive për renditjen e produkteve në katalog
 const sortOptions = [
     { value: 'name', label: 'Alphabetical' },
     { value: 'priceDesc', label: 'Price - High to low' },
     { value: 'price', label: 'Price - Low to high' },
 ]
 
+// Eksportojmë komponentin Catalog
 export default function Catalog() {
+    // Përdorim hook-un useProducts për të marrë të dhënat e produkteve nga API
     const { products, filtersLoaded, brands, types, metaData } = useProducts();
+
+    // Përdorim hook-un useAppSelector për të marrë parametrat e produkteve nga vargu i reduksit
     const { productParams } = useAppSelector(state => state.catalog);
+
+    // Përdorim hook-un useAppDispatch për të marrë funksionin dispatch
     const dispatch = useAppDispatch();
 
-
-if (!filtersLoaded) return <LoadingComponent message='Loading products...' />
+    // Nëse filtrimet nuk janë ngarkuar ende, shfaq një komponent Loading
+    if (!filtersLoaded) return <LoadingComponent message='Loading products...' />;
 
 return (
         <Grid container columnSpacing={4}>

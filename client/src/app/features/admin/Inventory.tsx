@@ -12,11 +12,17 @@ import { removeProduct, setPageNumber } from "../catalog/catalogSlice";
 import ProductForm from "./ProductForm";
 
 export default function Inventory() {
+    // Përdor funksionin 'useProducts' për të marrë të dhënat e produkteve dhe metadata
     const { products, metaData } = useProducts();
+    // Përdor 'useState' për të ruajtur gjendjen e modalitetit të redaktimit (editMode)
     const [editMode, setEditMode] = useState(false);
+    // Përdor 'useAppDispatch' për të marrë funksionin 'dispatch' nga Redux
     const dispatch = useAppDispatch();
+    // Përdor 'useState' për të ruajtur gjendjen e produktit të zgjedhur për redaktim
     const [selectedProduct, setSelectedProduct] = useState<Product | undefined>(undefined);
+    // Përdor 'useState' për të ruajtur gjendjen e ngarkesës (loading)
     const [loading, setLoading] = useState(false);
+    // Përdor 'useState' për të ruajtur gjendjen e elementit të synuar (target)
     const [target, setTarget] = useState(0);
 
     function handleSelectProduct(product: Product) {

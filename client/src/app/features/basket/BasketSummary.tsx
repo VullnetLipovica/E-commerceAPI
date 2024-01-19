@@ -7,10 +7,16 @@ interface Props {
     subtotal?: number;
 }
 
+// Eksportojmë komponentin BasketSummary
 export default function BasketSummary({ subtotal }: Props) {
-    const { basket } = useAppSelector(state => state.basket);;
+    // Përdorim hook-un useAppSelector për të marrë gjendjen e koshit nga vargu i reduksit
+    const { basket } = useAppSelector(state => state.basket);
+
+    // Nëse prop-i subtotal është i papërcaktuar, llogarit atë nga artikujt e koshit
     if (subtotal === undefined)
         subtotal = basket?.items.reduce((sum, item) => sum + (item.quantity * item.price), 0) ?? 0;
+
+    // Caktojmë një tarifë për transportin bazuar në vlerën e subtotal-it
     const deliveryFee = subtotal > 10000 ? 0 : 500;
 
     return (
